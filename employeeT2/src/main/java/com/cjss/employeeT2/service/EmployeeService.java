@@ -92,10 +92,11 @@ public class EmployeeService {
         return emp.stream().map(this::getEmployeeWithSalary).collect(Collectors.toList());
     }
     public List<EmployeeAttendanceSalary> getEmployeeAttend(String date){
-       List<EmployeeAttendanceEntity> empAtd = employeeAttendanceRepo.findByDateEndsWith(date);
+//       List<EmployeeAttendanceEntity> empAtd = employeeAttendanceRepo.findByDateContains(date);
+        List<EmployeeAttendanceEntity> empAtd = employeeAttendanceRepo.findByHolidayTrue();
         Set<String> e1 = empAtd.stream().map(EmployeeAttendanceEntity::getEmployeeDetails).map(EmployeeDetailsEntity::getId).collect(Collectors.toSet());
         List<Integer> size = new ArrayList<>();
-                e1.forEach(e2 -> {List<EmployeeAttendanceEntity> e = empAtd.stream().filter(EmployeeAttendanceEntity::isHoliday).filter(empAtd1 -> empAtd1.getEmployeeDetails().getId().equalsIgnoreCase(e2)).collect(Collectors.toList()); size.add(e.size());});
+                e1.forEach(e2 -> {List<EmployeeAttendanceEntity> e = empAtd.stream().filter(employeeAttendanceEntity -> employeeAttendanceEntity.getDate().endsWith(date)).filter(empAtd1 -> empAtd1.getEmployeeDetails().getId().equalsIgnoreCase(e2)).collect(Collectors.toList()); size.add(e.size());});
         List<EmployeeAttendanceEntity> empAtt = empAtd.stream().filter(EmployeeAttendanceEntity::isHoliday).collect(Collectors.toList());
         System.out.println(empAtt);
       Set<EmployeeDetailsEntity> e = e1.stream().map(em -> employeeDetailsRepo.findById(em).orElse(null)).collect(Collectors.toSet());

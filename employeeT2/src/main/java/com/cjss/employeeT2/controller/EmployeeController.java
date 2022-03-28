@@ -22,7 +22,7 @@ public class EmployeeController {
     public Set<EmployeeDetails> getEmployeeByCountry(@PathVariable String country){ return  employeeService.getEmployeeByCountry(country);}
     @GetMapping("/city/{city1}/{city2}")
     public Set<EmployeeDetails> getEmployeeByCity(@PathVariable String city1, @PathVariable String city2){ return  employeeService.getEmployeeByCity(city1,city2);}
-    @GetMapping("/city2/{city1}/{country}")
+    @GetMapping("/city2/{city}/{country}")
     public Set<EmployeeDetails> getEmployeeByCityAndCountry(@PathVariable String city, @PathVariable String country){ return  employeeService.getEmployeeByCityAndCountry(city,country);}
     @GetMapping("/salary")
     public List<EmployeeSalaryDetails> getEmployeeSalaryDetails(){ return employeeService.getEmployeeSalaryDetails();}

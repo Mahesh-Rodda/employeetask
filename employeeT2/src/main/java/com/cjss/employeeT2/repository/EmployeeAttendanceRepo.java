@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface EmployeeAttendanceRepo extends JpaRepository<EmployeeAttendanceEntity,String> {
 
-    List<EmployeeAttendanceEntity> findByDateEndsWith(String date);
-
+//    List<EmployeeAttendanceEntity> findByDateContains(String date);
+List<EmployeeAttendanceEntity> findByHolidayTrue();
 
 }
