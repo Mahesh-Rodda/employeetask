@@ -10,7 +10,7 @@ import java.util.List;
 @Validated
 public class EmployeeDetails {
     private String id;
-    @NotNull(message = "ghm")
+    @NotNull
     private String name;
     @Email
     private String email;
